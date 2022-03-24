@@ -1,6 +1,9 @@
 import React from "react";
 import logo from './logo.svg';
 import './App.css';
+
+import FirstPage from './components/FirstPage';
+
 // Fetching data from /api endpoint.
 // Making simple GET request using Fetch API to backend 
 // and then have data returned as JSON.
@@ -9,7 +12,7 @@ function App() {
   React.useState(null);
 // HTTP request using useEffect
   React.useEffect(() => {
-    fetch("/api")
+    fetch("http://localhost:3001")
     .then((res) => res.json())
     .then((data) => 
     setData(data.message));
