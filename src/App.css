@@ -37,7 +37,7 @@
   }
 }
 
-.Products {
+.product {
   background-color: #ffffff;
   min-height: 100vh;
   display: flex;
@@ -47,11 +47,22 @@
   font-size: calc(50px + 2vmin);
   color: white;
 }
-.Products img {
+.product img {
   max-height: 200px;
 }
 
-.p {
+p {
   color: #000000;
   font-size: medium;
+}
+.product-container button {
+  background-color: #55b1db;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5%;
 }

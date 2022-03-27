@@ -1,11 +1,7 @@
 import React from "react";
 import "./App.css";
 import CatLogo from "./catlogo.svg";
-import Cat from "./images/cat2.png";
-import Dog from "./images/dog2.jpg";
-import Unicorn from "./images/unicorn.png";
-import Dino from "./images/dino.png";
-import FirstPage from "./components/FirstPage";
+import Product from "./components/Product";
 import { getProducts } from "./api/getProducts";
 // Fetching data from /api endpoint.
 // Making simple GET request using Fetch API to backend
@@ -32,16 +28,15 @@ function App() {
         <img src={CatLogo} className="App-logo" alt="logo" />
       </header>
       <h1>Webshop</h1>
-      <div className="Products">
-        {products.map(product => {
-          <FirstPage description="Cat" img={Cat} />;
-        })}
+      <div className="product">
+        {products && products.map(product => (
+          <Product description={product.description} img={product.url} price={product.price} />
+        ))}
         {/* <FirstPage description="Cat" img={Cat} />
         <FirstPage description="Dog" img={Dog} />
         <FirstPage description="Dino" img={Dino} />
         <FirstPage description="Unicorn" img={Unicorn} /> */}
       </div>
-      <div className="CartItems"></div>
     </div>
   );
 }
