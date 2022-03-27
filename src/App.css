@@ -14,13 +14,13 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #bee9fd;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: top;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(50px + 2vmin);
   color: white;
 }
 
@@ -35,4 +35,23 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.Products {
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-size: calc(50px + 2vmin);
+  color: white;
+}
+.Products img {
+  max-height: 200px;
+}
+
+.p {
+  color: #000000;
+  font-size: medium;
 }

@@ -1,7 +1,11 @@
-function FirstPage() {
+import Button from "./BuyButton";
+
+function FirstPage(props) {
   return (
     <div>
-      <h1>WeBsHoP</h1>
+      <img src={props.img} />
+      <p className="p">{props.description}</p>
+      <Button />
     </div>
   );
 }
