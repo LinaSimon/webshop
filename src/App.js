@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import CatLogo from "./catlogo.svg";
 import Product from "./components/Product";
-import { getProducts } from "./api/getProducts";
-import Basket from "./components/_Basket";
+// import { getProducts } from "./api/products/getProducts";
+import Basket from "./components/Basket";
 import Footer from "./components/Footer";
 import cartItems from "./components/CartItems";
 
@@ -28,13 +28,17 @@ function App() {
   };*/
   // HTTP request using useEffect
   React.useEffect(() => {
-    const p = getProducts();
-    setProducts(p);
-    console.log(p);
+    // const p = getProducts();
+    // setProducts(p);
+    // console.log(p);
 
     fetch("http://localhost:3001/api")
       .then((res) => res.json())
       .then((data) => console.log(data.message));
+
+    fetch("http://localhost:3001/api/products/getAll")
+      .then((res) => res.json())
+      .then((data) => console.log("getall", data.message));
 
   }, []);
 
