@@ -11,7 +11,7 @@ import cartItems from "./components/CartItems";
 // Making simple GET request using Fetch API to backend
 // and then have data returned as JSON.
 function App() {
-  //const [data, setData] = React.useState(null);
+  const [data, setData] = React.useState(null);
   const [products, setProducts] = React.useState(null);
   // Putting products in shopping cart. UseState Hook
   const [cartItems, setCartItems] = React.useState([]);
@@ -32,9 +32,11 @@ function App() {
     const p = getProducts();
     setProducts(p);
     console.log(p);
-    // fetch("http://localhost:3001")
-    //   .then((res) => res.json())
-    //   .then((data) => setData(data.message));
+
+    fetch("http://localhost:3001/api")
+      .then((res) => res.json())
+      .then((data) => console.log(data.message));
+
   }, []);
 
   return (
