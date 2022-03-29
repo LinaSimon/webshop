@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import CatLogo from "./catlogo.svg";
 import Product from "./components/Product";
 import { getProducts } from "./api/getProducts";
+import Basket from "./components/Basket";
+import Footer from "./components/Footer";
+import cartItems from "./components/CartItems";
+
 // Fetching data from /api endpoint.
 // Making simple GET request using Fetch API to backend
 // and then have data returned as JSON.
 function App() {
-  const [data, setData] = React.useState(null);
+  //const [data, setData] = React.useState(null);
   const [products, setProducts] = React.useState(null);
+  // Putting products in shopping cart. UseState Hook
+  const [cartItems, setCartItems] = React.useState([]);
+  /*const onAdd = (product) => {
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, qty: 1 }]);
+    }
+  };*/
   // HTTP request using useEffect
   React.useEffect(() => {
     const p = getProducts();
@@ -19,23 +37,24 @@ function App() {
     //   .then((data) => setData(data.message));
   }, []);
 
-
-
   return (
     <div className="App">
       <header className="App-header">
         <h1>GET stuffed animals !</h1>
-        <img src={CatLogo} className="App-logo" alt="logo" />
+        <img src={CatLogo} className="App-logo" alt="Spinning cat" />
+        <h2>Webshop</h2>
       </header>
-      <h1>Webshop</h1>
+
+      <div className="product-container"></div>
       <div className="product">
-        {products && products.map(product => (
-          <Product description={product.description} img={product.url} price={product.price} />
-        ))}
-        {/* <FirstPage description="Cat" img={Cat} />
-        <FirstPage description="Dog" img={Dog} />
-        <FirstPage description="Dino" img={Dino} />
-        <FirstPage description="Unicorn" img={Unicorn} /> */}
+        {products &&
+          products.map((product) => (
+            <Product
+              description={product.description}
+              img={product.url}
+              price={product.price}
+            />
+          ))}
       </div>
     </div>
   );
