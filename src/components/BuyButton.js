@@ -1,7 +1,16 @@
-function BuyButton() {
+
+
+function BuyButton(props) {
+  const {id} = props;
+  // const id = props.id;
+
+  const onAdd = (productId) => {
+    console.log(productId);
+  }
+
   return (
     <div>
-      <button>Get !</button>
+      <button onClick={() => onAdd(id)}>Get !</button>
     </div>
   );
 }

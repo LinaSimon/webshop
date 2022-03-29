@@ -3,7 +3,7 @@ import "./App.css";
 import CatLogo from "./catlogo.svg";
 import Product from "./components/Product";
 import { getProducts } from "./api/getProducts";
-import Basket from "./components/Basket";
+import Basket from "./components/_Basket";
 import Footer from "./components/Footer";
 import cartItems from "./components/CartItems";
 
@@ -11,10 +11,9 @@ import cartItems from "./components/CartItems";
 // Making simple GET request using Fetch API to backend
 // and then have data returned as JSON.
 function App() {
-  const [data, setData] = React.useState(null);
   const [products, setProducts] = React.useState(null);
   // Putting products in shopping cart. UseState Hook
-  const [cartItems, setCartItems] = React.useState([]);
+  // const [cartItems, setCartItems] = React.useState([]);
   /*const onAdd = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist) {
@@ -46,6 +45,7 @@ function App() {
         <img src={CatLogo} className="App-logo" alt="Spinning cat" />
         <h2>Webshop</h2>
       </header>
+      <Basket cartItems={0} />
 
       <div className="product-container"></div>
       <div className="product">
@@ -55,6 +55,7 @@ function App() {
               description={product.description}
               img={product.url}
               price={product.price}
+              id={product._id}
             />
           ))}
       </div>
