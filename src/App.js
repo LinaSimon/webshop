@@ -3,7 +3,6 @@ import "./App.css";
 import CatLogo from "./catlogo.svg";
 import Product from "./components/Product";
 import { getProducts } from "./api/getProducts";
-import Basket from "./components/Basket";
 import BasketButton from "./components/BasketButton";
 import Footer from "./components/Footer";
 import cartItems from "./components/CartItems";
@@ -48,7 +47,6 @@ function App() {
       </header>
 
       <BasketButton />
-      <Basket cartItems={0} />
 
       <div className="product-container"></div>
       <div className="product">

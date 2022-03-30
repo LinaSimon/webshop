@@ -1,8 +1,8 @@
-.BasketButton {
+.basketbtn {
   cursor: pointer;
   font: inherit;
   border: none;
-  background-color: #4d1601;
+  background-color: rgb(233, 233, 233);
   color: white;
   padding: 0.75rem 3rem;
   display: flex;
@@ -12,9 +12,9 @@
   font-weight: bold;
 }
 
-.button:hover,
-.button:active {
-  background-color: #2c0d00;
+.basketbtn:hover,
+.basketbtn:active {
+  background-color: pink;
 }
 
 .icon {
@@ -31,8 +31,8 @@
   font-weight: bold;
 }
 
-.button:hover .badge,
-.button:active .badge {
+.basketbtn:hover .badge,
+.basketbtn:active .badge {
   background-color: #92320c;
 }
 
