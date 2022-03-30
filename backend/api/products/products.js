@@ -1,27 +1,17 @@
 import database from "../../db_configuration.js";
+import stuffedAnimals from "./stuffed-animals.js";
 
+const productCollection = database.collection("products");
 
-export const getAllProducts = async () => {
-    const test = (await database).db("webshop");
-    const productDb = test.collection("products");
+export const getAllProducts = () => {
+    return productCollection.find({}).toArray();
+};
 
-    const res = productDb.findOne({});
-    // const result = collectionProducts.find()
-    // const test = db.collection("products");
-    // client.collection("products");
-    // const c = mongoClient.connect();
-    // const d = c.connect();
-    // const p = d.Collection("products");
-    // const test = mongoClient.db("webshop");
-    // const p = test.Collection("products");
-    // const result = await test.find({});
+export const seedProducts = () => {
+    const animals = stuffedAnimals;
+    console.log("seed")
+    productCollection.insertMany(animals);
+    console.log("hello", animals);
 
-    // console.log('mongo', result)
-    // const productCollection = test.connection("products");
-    // const products = productCollection.find();
-    // const collecttion = db.dbConfiguration();
-    // collecttion.dbConfiguration.
-    return res;
-    // return products;
 }
 

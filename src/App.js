@@ -28,13 +28,10 @@ function App() {
   };*/
   // HTTP request using useEffect
   React.useEffect(() => {
-    // const p = getProducts();
-    // setProducts(p);
-    // console.log(p);
 
-    fetch("http://localhost:3001/api")
+    fetch("api/products")
       .then((res) => res.json())
-      .then((data) => console.log(data.message));
+      .then(products => setProducts(products))
 
   }, []);
 
@@ -51,7 +48,7 @@ function App() {
       <div className="product">
         {products &&
           products.map((product) => (
-            <Product
+            <Product key={product._id}
               description={product.description}
               img={product.url}
               price={product.price}

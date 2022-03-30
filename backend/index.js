@@ -1,16 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { getAllProducts } from "./api/products/products.js";
-
-
-// import dbConfiguration from "./db_configuration";
-
-// const mongoClient = new mongodb.MongoClient("mongodb://localhost:27017");
-// mongoClient.connect();
-// const db = mongoClient.db("webshop");
-// const collectionProducts = db.Collection("products");
-// const collectionCart = db.Collection("cart");
-// const collectionOrder = db.Collection("order");
+import { getAllProducts, seedProducts } from "./api/products/products.js";
 
 const app = express();
 app.use(
@@ -20,13 +10,30 @@ app.use(
 );
 app.use(express.json());
 
+// Test api
 app.get("/api", (req, res) => {
   res.send({message: "Hello there! Where is my React app??"}).end();
 });
 
+// Get all products from db
 app.get("/api/products",async (req, res) => {
   const test = await getAllProducts();
-  res.send({message: test}).end();
+  console.log("test", test)
+  res.send(test).end();
+});
+
+// Post products to db
+app.post("/api/products",async (req, res) => {
+  const products = await getAllProducts();
+  if (products && products.length === 0) {
+    try {
+      await seedProducts();
+      res.sendStatus(200);
+    } catch (error) {
+      res.sendStatus(500);
+    }
+  }
+  res.sendStatus(200);
 });
 
 const PORT = 3001;
