@@ -1,6 +1,16 @@
 import express from "express";
 import cors from "cors";
-import mongodb from "mongodb";
+import { getAllProducts } from "./api/products/products.js";
+
+
+// import dbConfiguration from "./db_configuration";
+
+// const mongoClient = new mongodb.MongoClient("mongodb://localhost:27017");
+// mongoClient.connect();
+// const db = mongoClient.db("webshop");
+// const collectionProducts = db.Collection("products");
+// const collectionCart = db.Collection("cart");
+// const collectionOrder = db.Collection("order");
 
 const app = express();
 app.use(
@@ -12,6 +22,11 @@ app.use(express.json());
 
 app.get("/api", (req, res) => {
   res.send({message: "Hello there! Where is my React app??"}).end();
+});
+
+app.get("/api/products", (req, res) => {
+  const test = getAllProducts();
+  res.send({message: test}).end();
 });
 
 const PORT = 3001;
