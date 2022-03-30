@@ -1,4 +1,4 @@
-[
+export default [
     {
         "_id": 1,
         "url": "/images/cat2.png",

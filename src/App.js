@@ -2,41 +2,24 @@ import React, { useState } from "react";
 import "./App.css";
 import CatLogo from "./catlogo.svg";
 import Product from "./components/Product";
-import { getProducts } from "./api/getProducts";
 import BasketButton from "./components/BasketButton";
-import Footer from "./components/Footer";
-import cartItems from "./components/CartItems";
 
-// Fetching data from /api endpoint.
-// Making simple GET request using Fetch API to backend
-// and then have data returned as JSON.
 function App() {
   const [products, setProducts] = React.useState(null);
-  // Putting products in shopping cart. UseState Hook
-  // const [cartItems, setCartItems] = React.useState([]);
-  /*const onAdd = (product) => {
-    const exist = cartItems.find((x) => x.id === product.id);
-    if (exist) {
-      setCartItems(
-        cartItems.map((x) =>
-          x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
-        )
-      );
-    } else {
-      setCartItems([...cartItems, { ...product, qty: 1 }]);
-    }
-  };*/
-  // HTTP request using useEffect
-  React.useEffect(() => {
-    const p = getProducts();
-    setProducts(p);
-    console.log(p);
+  const [cartItems, setCartItems] = React.useState(0);
 
-    fetch("http://localhost:3001/api")
+  React.useEffect(() => {
+
+    // get data from api endpoints
+    fetch("api/products")
       .then((res) => res.json())
-      .then((data) => console.log(data.message));
+      .then(products => setProducts(products))
 
   }, []);
+
+  const addCallback = () => {
+    setCartItems(cartItems + 1);
+  }
 
   return (
     <div className="App">
@@ -46,13 +29,15 @@ function App() {
         <h2>Webshop</h2>
       </header>
 
-      <BasketButton />
+      <BasketButton itemCount={cartItems} />
 
       <div className="product-container"></div>
       <div className="product">
         {products &&
           products.map((product) => (
             <Product
+              addCallback={() => addCallback()}
+              key={product._id}
               description={product.description}
               img={product.url}
               price={product.price}
