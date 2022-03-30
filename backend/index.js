@@ -1,44 +1,43 @@
 import express from "express";
-import mongodb from "mongodb";
 import cors from "cors";
+import { getAllProducts, seedProducts } from "./api/products/products.js";
 
-// MongoDB setup
-const mongoClient = new mongodb.MongoClient("mongodb://localhost:27017");
-mongoClient.connect();
-const db = mongoClient.db("webshop");
-const collectionProducts = db.Collection("products");
-const collectionCart = db.Collection("cart");
-const collectionOrder = db.Collection("order");
-
-// Creating webserver with node.js and express
-
-// const express = require("express");
-
-// const PORT = process.env.PORT || 3001;
-
-// const app = express();
-
-// API setup
 const app = express();
-const PORT = 3001;
-app.use(express.json());
 app.use(
   cors({
-    origin: "localhost://3000"})
+    origin: "http://localhost:3000",
+  })
 );
-app.use(express.static("public"));
+app.use(express.json());
 
-// app.use(
-//  cors({
-//    origin: "http://localhost:3000",
-//  })
-// );
-
-// Message from server
+// Test api
 app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" });
+  res.send({message: "Hello there! Where is my React app??"}).end();
 });
 
+// Get all products from db
+app.get("/api/products",async (req, res) => {
+  const test = await getAllProducts();
+  console.log("test", test)
+  res.send(test).end();
+});
+
+// Post products to db
+app.post("/api/products",async (req, res) => {
+  const products = await getAllProducts();
+  if (products && products.length === 0) {
+    try {
+      await seedProducts();
+      res.sendStatus(200);
+    } catch (error) {
+      res.sendStatus(500);
+    }
+  }
+  res.sendStatus(200);
+});
+
+const PORT = 3001;
+
 app.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:3001`);
 });

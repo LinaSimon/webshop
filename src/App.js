@@ -1,30 +1,50 @@
-import React from "react";
-import logo from './logo.svg';
-import './App.css';
-// Fetching data from /api endpoint.
-// Making simple GET request using Fetch API to backend 
-// and then have data returned as JSON.
+import React, { useState } from "react";
+import "./App.css";
+import CatLogo from "./catlogo.svg";
+import Product from "./components/Product";
+import BasketButton from "./components/BasketButton";
+
 function App() {
-  const [data, setData] =
-  React.useState(null);
-// HTTP request using useEffect
+  const [products, setProducts] = React.useState(null);
+  const [cartItems, setCartItems] = React.useState(0);
+
   React.useEffect(() => {
-    fetch("/api")
-    .then((res) => res.json())
-    .then((data) => 
-    setData(data.message));
+
+    // get data from api endpoints
+    fetch("api/products")
+      .then((res) => res.json())
+      .then(products => setProducts(products))
+
   }, []);
-  
-  
+
+  const addCallback = () => {
+    setCartItems(cartItems + 1);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> 
-          <h1>Blame it on the lightning</h1>
-        </p>
+        <h1>GET stuffed animals !</h1>
+        <img src={CatLogo} className="App-logo" alt="Spinning cat" />
+        <h2>Webshop</h2>
       </header>
+
+      <BasketButton itemCount={cartItems} />
+
+      <div className="product-container"></div>
+      <div className="product">
+        {products &&
+          products.map((product) => (
+            <Product
+              addCallback={() => addCallback()}
+              key={product._id}
+              description={product.description}
+              img={product.url}
+              price={product.price}
+              id={product._id}
+            />
+          ))}
+      </div>
     </div>
   );
 }
