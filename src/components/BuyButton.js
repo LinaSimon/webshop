@@ -1,11 +1,11 @@
 
 
 function BuyButton(props) {
-  const {id} = props;
-  // const id = props.id;
+  const {id, addCallback} = props;
 
+  // Use productId to handle product/cart items..
   const onAdd = (productId) => {
-    console.log(productId);
+    addCallback(1);
   }
 
   return (

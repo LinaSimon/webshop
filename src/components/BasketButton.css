@@ -1,19 +1,25 @@
 .basketbtn {
+  display: flex;
+  justify-content: right;
+  margin: 20px 20px 0 0;
+}
+
+.basketbtn button {
   cursor: pointer;
   font: inherit;
   border: none;
   background-color: rgb(233, 233, 233);
-  color: white;
+  color: #55b1db;
   padding: 0.75rem 3rem;
-  display: flex;
   justify-content: space-around;
   align-items: center;
   border-radius: 25px;
   font-weight: bold;
+  margin-right: 20px;
 }
 
-.basketbtn:hover,
-.basketbtn:active {
+.basketbtn button:hover,
+.basketbtn button:active {
   background-color: pink;
 }
 
@@ -31,8 +37,8 @@
   font-weight: bold;
 }
 
-.basketbtn:hover .badge,
-.basketbtn:active .badge {
+.basketbtn button:hover .badge,
+.basketbtn button:active .badge {
   background-color: #92320c;
 }
 
