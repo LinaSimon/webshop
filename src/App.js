@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import CatLogo from "./catlogo.svg";
 import Product from "./components/Product";
-// import { getProducts } from "./api/products";
-import Basket from "./components/_Basket";
+import BasketButton from "./components/BasketButton";
 import Footer from "./components/Footer";
 import cartItems from "./components/CartItems";
 
@@ -42,7 +41,8 @@ function App() {
         <img src={CatLogo} className="App-logo" alt="Spinning cat" />
         <h2>Webshop</h2>
       </header>
-      <Basket cartItems={0} />
+
+      <BasketButton />
 
       <div className="product-container"></div>
       <div className="product">
