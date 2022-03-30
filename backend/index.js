@@ -24,8 +24,8 @@ app.get("/api", (req, res) => {
   res.send({message: "Hello there! Where is my React app??"}).end();
 });
 
-app.get("/api/products", (req, res) => {
-  const test = getAllProducts();
+app.get("/api/products",async (req, res) => {
+  const test = await getAllProducts();
   res.send({message: test}).end();
 });
 
